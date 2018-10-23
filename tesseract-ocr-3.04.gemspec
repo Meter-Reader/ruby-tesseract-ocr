@@ -5,7 +5,7 @@ Gem::Specification.new {|s|
 	s.version  = Tesseract.version
 	s.author   = ['meh.', 'ortutay', 'ShamoX']
 	s.email    = ['meh@schizofreni.co', 'roland@rlaures.pro']
-	s.homepage = 'http://github.com/meh/ruby-tesseract-ocr'
+	s.homepage = 'https://github.com/ShamoX/ruby-tesseract-ocr'
 	s.platform = Gem::Platform::RUBY
 	s.summary  = 'A wrapper library to the tesseract-ocr API.'
 	s.license  = 'BSD'

@@ -9,7 +9,8 @@ Making it work
 To make this library work you need tesseract-ocr and leptonica libraries and
 headers and a C++ compiler.
 
-The gem is called `tesseract-ocr`.
+The gem is called `tesseract-ocr-3.04` since the inclusion of a fix for tesseract
+version >= 3.04 to work (tested on 3.05).
 
 If you're on a distribution that separates the libraries from headers, remember
 to install the *-dev* package.
@@ -124,9 +125,9 @@ Usage: tesseract [options]
     -C, --config PATH...             config files to load
     -b, --blacklist LIST             blacklist the following chars
     -w, --whitelist LIST             whitelist the following chars
-> tesseract.rb test/first.png 
+> tesseract.rb test/first.png
 ABC
-> tesseract.rb -c test/first.png 
+> tesseract.rb -c test/first.png
 86
 ```
 
