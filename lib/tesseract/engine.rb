@@ -35,6 +35,8 @@ class Engine
 		:optional => { :path => nil, :language => :eng, :mode => :DEFAULT, :variables => {}, :config => [] },
 		:alias    => { :data => :path, :lang => :language }
 	def initialize (path = nil, language = :eng, mode = :DEFAULT, variables = {}, config = [], &block) # :yields: self
+		Tesseract.prefix = path unless path.nil?
+
 		@api = API.new
 
 		@initializing = true
