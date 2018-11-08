@@ -30,6 +30,7 @@ module Iterator
 	inline 'C++' do |cpp|
 		cpp.include   'tesseract/resultiterator.h'
 		cpp.libraries 'tesseract'
+		cpp.compiler.options = C.compiler_options
 
 		cpp.raw 'using namespace tesseract;'
 

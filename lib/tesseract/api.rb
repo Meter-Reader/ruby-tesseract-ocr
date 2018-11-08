@@ -54,7 +54,9 @@ class API
 	}
 
 	def initialize
+		environement_save_set
 		@internal = FFI::AutoPointer.new(C::BaseAPI.create, self.class.method(:finalize))
+		environement_restore
 	end
 
 	def self.finalize (pointer) # :nodoc:
@@ -217,6 +219,26 @@ class API
 
 	def to_ffi
 		@internal
+	end
+
+	def environement_save_set
+		return unless version.match(/^4\./)
+		@lc_all = ENV.fetch('LC_ALL', 'C')
+		@lc_ctype = ENV.fetch('LC_CTYPE', 'C')
+		@lc_numeric = ENV.fetch('LC_NUMERIC', 'C')
+		ENV['LC_ALL'] = 'C'
+		ENV['LC_CTYPE'] = 'C'
+		ENV['LC_NUMERIC'] = 'C'
+		puts "LC_ALL: #{ENV['LC_ALL']}"
+		puts "LC_CTYPE: #{ENV['LC_CTYPE']}"
+		puts "LC_NUMERIC: #{ENV['LC_NUMERIC']}"
+	end
+
+	def environement_restore
+		return unless version.match(/^4\./)
+		ENV['LC_ALL'] = @lc_all
+		ENV['LC_CTYPE'] = @lc_ctype
+		ENV['LC_NUMERIC'] = @lc_numeric
 	end
 end
 

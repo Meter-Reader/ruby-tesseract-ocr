@@ -30,6 +30,7 @@ module Leptonica
 	inline 'C++' do |cpp|
 		cpp.include   'leptonica/allheaders.h'
 		cpp.libraries 'lept'
+		cpp.compiler.options = C.compiler_options
 
 		cpp.eval {
 			enum :Format, [

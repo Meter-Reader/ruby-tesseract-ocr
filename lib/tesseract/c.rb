@@ -29,11 +29,26 @@ require 'ffi/inline'
 module Tesseract
 
 module C
+	def self.compiler_options
+		return @compiler_options unless @compiler_options.nil?
+		version = `tesseract --version`.split("\n").first.split.last
+		@compiler_options = if version.match(/^4\./)
+													'-std=c++11'
+												else
+													''
+												end
+	rescue StandardError
+		@compiler_options = ''
+	ensure
+		@compiler_options
+	end
+
 	extend FFI::Inline
 
 	inline 'C++' do |cpp|
 		cpp.include   'tesseract/strngs.h'
 		cpp.libraries 'tesseract'
+		cpp.compiler.options = C.compiler_options
 
 		cpp.function %{
 			void free (void* pointer) {

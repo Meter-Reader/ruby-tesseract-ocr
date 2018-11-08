@@ -30,6 +30,7 @@ module BaseAPI
 	inline 'C++' do |cpp|
 		cpp.include   'tesseract/baseapi.h'
 		cpp.libraries 'tesseract'
+		cpp.compiler.options = C.compiler_options
 
 		cpp.raw 'using namespace tesseract;'
 
